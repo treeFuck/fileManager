@@ -139,11 +139,13 @@ export default {
   },
   methods: {
     sure() {
+      this.$router.replace({ name: "index" });
+      return;
       this.clickSure = true;
       setTimeout(() => {
         this.clickSure = false;
         if (this.username == "1111" && this.password == "1111") {
-          this.$router.replace({ name: "index" });
+          
         } else {
           this.$Modal.warning({
             title: "账号或密码错误"
