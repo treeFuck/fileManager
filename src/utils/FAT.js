@@ -1,8 +1,8 @@
 import { FATStack } from './class';
 import store from '../store';
 
-const FATLen_x = 4; // FAT行数
-const FATLen_y = 4; // FAT列数
+const FATLen_x = store.state.FATLen_x; // FAT行数
+const FATLen_y = store.state.FATLen_y; // FAT列数
 
 
 // 初始化FAT
@@ -66,7 +66,7 @@ function writeChar(str, index) {
 function writeStack(str) {
     if (!ifEnoughFAT(str.length)) {
         // FAT剩余空间不足够写入该字符串
-        return false;
+        return -1;
     }
     // 递归写入完毕，将首盘号返回
     return writeChar(str, 0);
@@ -113,19 +113,22 @@ function delChar(index) {
 }
 // 根据首盘号（首物理地址）删除一个字符串的stack
 function delStack(index) {
+    if(index == false && isNaN(Number(index)) ) {
+        return false;
+    }
     delChar(index);
     return true;
 }
 
 
-// 根据首盘号（首物理地址）修改stack，将oleStr置换为newStar
+// 根据首盘号（首物理地址）修改stack，将oldStr置换为newStr
 function changeStack(index, newStr) {
-    let oleStr = readStack(index);
-    if(!ifEnoughFAT(newStr.length - oleStr.length)) {
+    let oldStr = readStack(index);
+    if(!ifEnoughFAT(newStr.length - oldStr.length)) {
         // 空间是否足够字符串进行修改
         return false;
     }
-    // 先删除oleStr
+    // 先删除oldStr
     delStack(index);
     // 再新增newStr
     writeStack(newStr);
@@ -137,5 +140,6 @@ export default {
     writeStack,
     readStack,
     delStack,
-    changeStack
+    changeStack,
+    ifEnoughFAT
 }

@@ -11,10 +11,12 @@
   </div>
 </template>
 <script>
-import FAT from './utils/FAT'
+import FAT_util from './utils/FAT'
+import dir_util from './utils/dir'
 export default {
   mounted() {
-    FAT.initFAT()
+    FAT_util.initFAT();
+    dir_util.initRoot();
   }
 }
 </script>
