@@ -1,19 +1,17 @@
-# file-manager
+# 多用户多级目录文件系统的实现
 
-## Project setup
-```
-npm install
-```
+## 介绍
++ 大学本科课程操作系统的课设实验，一个对文件操作的底层模拟，基于>Vue全家桶开发，整了大概俩天，比较简陋。
++ 本项目是纯前端Web页面，想看效果的可以直接本地打开dist文件的>index.html。
+> PS：附上课设报告和流程图，广工的同胞们如果需要请自取，留下你的**star**就好
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 逻辑介绍
++ 模拟的存储方式是位示图+显示链接。
++ 主要把文件操作分成了三个层：FAT-位示图层，文件操作层，目录操作层。三层是逐层递进的，FAT-位示图是底层，而目录操作层则是面向用户。
++ 关键代码可以看src/utils文件夹里的三个js文件。
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## 优势
++ 虽然是快速开发整的有点简陋，但是还是比较直观和简洁的，希望可以对你有所帮助。
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 不足
++ 多用户还没有实现，为了方便测试，数据都是一次性存在Vuex的，没有针对用户来存储相应的数据。
