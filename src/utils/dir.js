@@ -99,14 +99,16 @@ function changeFile(oldFile, newFileName, newFileStr) {
         // 文件字符串不能为空
         return 1;
     }
-    let index = findIndex(oldFile.fileName, 1);
     let newFile =  File_util.changeFile(oldFile, newFileName, newFileStr);
     if(!newFile) {
         // FAT剩余空间不足够
         return 2;
     }
-    store.state.nowDir[index] = newFile;
+    let index = findIndex(oldFile.fileName, 1);
+    store.state.nowDir.fileArr.splice(index, 1, newFile);
     return 3;
+    
+    
 }
 // 新建子目录
 function newSubDir(dirName) {
