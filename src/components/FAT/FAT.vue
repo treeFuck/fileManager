@@ -1,5 +1,8 @@
 <style lang="scss" scoped>
 .FAT {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 50vw;
   height: 100vh;
   background: #eee;
@@ -156,7 +159,7 @@ export default {
   name: "FAT",
   data() {
     return {
-      model: 0, // 0->位示图，1->字符存储图,
+      model: false, // false->位示图，true->字符存储图,
       showIndex: false // 是否显示下标
     };
   },

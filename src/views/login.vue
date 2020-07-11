@@ -98,11 +98,23 @@
       </div>
       <div class="username">
         <img src="../assets/username.png" />
-        <input name="username" type="text" v-model="username" autocomplete="off" />
+        <input
+          name="username"
+          type="text"
+          v-model="username"
+          autocomplete="off"
+          placeholder="测试账号：user"
+        />
       </div>
       <div class="password">
         <img src="../assets/password.png" />
-        <input name="password" type="password" v-model="password" autocomplete="new-password" />
+        <input
+          name="password"
+          type="password"
+          v-model="password"
+          autocomplete="new-password"
+          placeholder="测试账号：1234"
+        />
       </div>
       <div class="sure">
         <span v-show="!clickSure" @click="sure">登陆</span>
@@ -139,13 +151,11 @@ export default {
   },
   methods: {
     sure() {
-      this.$router.replace({ name: "index" });
-      return;
       this.clickSure = true;
       setTimeout(() => {
         this.clickSure = false;
-        if (this.username == "1111" && this.password == "1111") {
-          
+        if (this.username == "user" && this.password == "1234") {
+          this.$router.replace({ name: "index" });
         } else {
           this.$Modal.warning({
             title: "账号或密码错误"
